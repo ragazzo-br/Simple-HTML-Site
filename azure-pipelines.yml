@@ -15,3 +15,14 @@ steps:
     rootFolderOrFile: '$(build.sourcesDirectory)'
     includeRootFolder: false
 - task: PublishBuildArtifacts@1
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Free Trial(7e94fe53-0ac3-4020-88bf-ae332697357c)'
+    appType: 'webAppLinux'
+    WebAppName: 
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: '*.zip'
+    cleanDestinationFolder: true
